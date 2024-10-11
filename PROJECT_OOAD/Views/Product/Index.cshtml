@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Product List</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <form action="Product" method="POST">
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Department/Branch :</label>
+                    <select class="form-control hold-transition">
+                        <option>0002 Head Officer</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Status :</label>
+                    <select class="form-control hold-transition">
+                        <option selected>Active</option>
+                        <option>Closed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label>&emsp;</label>
+                    <br />
+                    <a href="ProductCreate" class="btn btn-success btn_pAdd"><i class="fa fa-plus"></i> New Record</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <table id="example1" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th>StockQuantity</th>
+                        <th>Action <i class="fa fa-cog fa-spin"></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in ViewBag.data1)
+                    {
+                        <tr>
+
+                            <td>@item.P_ID</td>
+                            <td>@item.Name</td>
+                            <td>@item.Price</td>
+                            <td>@item.StockQuantity</td>
+
+                            <td class="text-center">
+                                <a href="ProductEdit-@item.ID" class="btn btn-xs btn-warning btn_pUpdate" title="Edit">Edit <i class="fa fa-edit"></i></a>
+                                <a href="javascript:void(0)" onclick="RemoveRecord(this,'@item.ID')" class="btn btn-xs btn-danger btn_pDelete" title="Remove">Remove <i class="fa fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@Scripts.Render("~/content/Intranet/js/Product")
+
